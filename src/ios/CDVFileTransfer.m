@@ -548,7 +548,7 @@ static CFIndex WriteDataToStream(NSData* data, CFWriteStreamRef stream)
     NSMutableDictionary* uploadResult;
     CDVPluginResult* result = nil;
 
-    NSLog(@"File Transfer Finished with response code %d", self.responseCode);
+    //NSLog(@"File Transfer Finished with response code %d", self.responseCode);
 
     if (self.direction == CDV_TRANSFER_UPLOAD) {
         uploadResponse = [[NSString alloc] initWithData:self.responseData encoding:NSUTF8StringEncoding];
@@ -619,7 +619,7 @@ static CFIndex WriteDataToStream(NSData* data, CFWriteStreamRef stream)
 {
     CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_IO_EXCEPTION messageAsDictionary:[self.command createFileTransferError:FILE_NOT_FOUND_ERR AndSource:self.source AndTarget:self.target AndHttpStatus:self.responseCode AndBody:errorMessage]];
 
-    NSLog(@"File Transfer Error: %@", errorMessage);
+    //NSLog(@"File Transfer Error: %@", errorMessage);
     [self cancelTransfer:connection];
     [self.command.commandDelegate sendPluginResult:result callbackId:callbackId];
 }
@@ -706,7 +706,7 @@ static CFIndex WriteDataToStream(NSData* data, CFWriteStreamRef stream)
     NSString* body = [[NSString alloc] initWithData:self.responseData encoding:NSUTF8StringEncoding];
     CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsDictionary:[command createFileTransferError:CONNECTION_ERR AndSource:source AndTarget:target AndHttpStatus:self.responseCode AndBody:body]];
 
-    NSLog(@"File Transfer Error: %@", [error localizedDescription]);
+    //NSLog(@"File Transfer Error: %@", [error localizedDescription]);
 
     [self cancelTransfer:connection];
     [self.command.commandDelegate sendPluginResult:result callbackId:callbackId];
